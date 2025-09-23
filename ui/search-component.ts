@@ -1,6 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 
-export class SearchPage {
+export class SearchComponent {
     readonly page: Page;
     readonly header: Locator;
     readonly searchInput: Locator;

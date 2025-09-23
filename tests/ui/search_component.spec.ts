@@ -1,10 +1,10 @@
 import {test, expect} from '@playwright/test';
-import {SearchPage} from "../../ui/search-page";
+import {SearchComponent} from "../../ui/search-component";
 
-let searchPage: SearchPage;
+let searchPage: SearchComponent;
 
 test.beforeEach(async ({page}) => {
-    searchPage = new SearchPage(page);
+    searchPage = new SearchComponent(page);
     await searchPage.goto();
 });
 
