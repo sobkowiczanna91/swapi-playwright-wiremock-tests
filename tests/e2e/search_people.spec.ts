@@ -2,6 +2,7 @@ import {test, expect} from '@playwright/test';
 import {SearchComponent} from "../../pages/search-component";
 import {NoResultsComponent} from "../../pages/no_results_component";
 import {CharacterCardComponent} from "../../pages/character_card_component";
+import {PEOPLE_DATA} from "../data_people";
 
 let searchPage: SearchComponent;
 
@@ -14,12 +15,7 @@ test.beforeEach(async ({page}) => {
 
 test.describe('@regression search character by name', () => {
 
-    const peopleCases = [
-        {name: "Darth Vader", gender: "male", birthYear: "41.9BBY", eyeColor: "yellow", skinColor: "white"},
-        {name: "Luke Skywalker", gender: "male", birthYear: "19BBY", eyeColor: "blue", skinColor: "fair"},
-    ] as const;
-
-    for (const p of peopleCases) {
+    for (const p of Object.values(PEOPLE_DATA)) {
         test(`positive full name - ${p.name}`, async () => {
             await searchPage.search(p.name);
 
@@ -27,16 +23,16 @@ test.describe('@regression search character by name', () => {
             await expect(characterCardComponent.name).toHaveText(p.name);
 
             await expect.soft(characterCardComponent.genderLabel).toBeVisible();
-            await expect.soft(characterCardComponent.genderValue).toContainText(p.gender);
+            await expect.soft(characterCardComponent.genderValue).toContainText(p.gender, {ignoreCase: true});
 
             await expect.soft(characterCardComponent.birthYearLabel).toBeVisible();
-            await expect.soft(characterCardComponent.birthYearValue).toContainText(p.birthYear);
+            await expect.soft(characterCardComponent.birthYearValue).toContainText(p.birth_year);
 
             await expect.soft(characterCardComponent.eyeColorLabel).toBeVisible();
-            await expect.soft(characterCardComponent.eyeColorValue).toContainText(p.eyeColor);
+            await expect.soft(characterCardComponent.eyeColorValue).toContainText(p.eye_color, {ignoreCase: true});
 
             await expect.soft(characterCardComponent.skinColorLabel).toBeVisible();
-            await expect.soft(characterCardComponent.skinColorValue).toContainText(p.skinColor);
+            await expect.soft(characterCardComponent.skinColorValue).toContainText(p.skin_color, {ignoreCase: true});
 
             expect(test.info().errors).toHaveLength(0);
         });
@@ -50,10 +46,13 @@ test.describe('@regression search character by name', () => {
         await characterCardComponent.waitForNameToBe(LU);
 
         await characterCardComponent.name.all().then(async (nameHeadings) => {
+
             expect(nameHeadings.length).toBeGreaterThan(0);
+
             for (const heading of nameHeadings) {
                 await expect.soft(heading).toContainText(LU, {ignoreCase: true});
             }
+
             expect(test.info().errors).toHaveLength(0);
         });
     });
