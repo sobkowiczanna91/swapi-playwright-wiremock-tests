@@ -1,10 +1,10 @@
-import {Page, Locator} from '@playwright/test';
-import {getLabelLocator, getValueLocator} from "./utils/locator_helper";
+import {Page, Locator, expect} from '@playwright/test';
+import {getLabelLocator, getValueLocator} from "../tests/frontend/utils/locator_helper";
 
-const GENDER = 'Gender:';
-const BIRTH_YEAR = 'Birth year:';
-const EYE_COLOR = 'Eye color:';
-const SKIN_COLOR = 'Skin color:';
+const GENDER = 'Gender';
+const BIRTH_YEAR = 'Birth year';
+const EYE_COLOR = 'Eye color';
+const SKIN_COLOR = 'Skin color';
 
 export class CharacterCardComponent {
     readonly page: Page;
@@ -29,6 +29,11 @@ export class CharacterCardComponent {
         this.eyeColorValue = this.page.locator(getValueLocator(EYE_COLOR));
         this.skinColorLabel = this.page.locator(getLabelLocator(SKIN_COLOR));
         this.skinColorValue = this.page.locator(getValueLocator(SKIN_COLOR));
+    }
+
+    async waitForNameToBe(expectedName: string): Promise<void> {
+        await this.name.first().waitFor({state: 'visible'});
+        await expect(this.name.first()).toContainText(expectedName);
     }
 
 }

@@ -3,5 +3,5 @@ export function getLabelLocator(text: string): string {
 }
 
 export function getValueLocator(text: string): string {
-    return `//div[normalize-space(.)="${text}:"]//following-sibling::div[1]`;
+    return `//div[text()="${text}:"]//following-sibling::div[1]`;
 }

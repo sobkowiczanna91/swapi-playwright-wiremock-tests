@@ -23,6 +23,7 @@ export class SearchComponent {
 
     async goto() {
         await this.page.goto("/");
+        await this.page.waitForLoadState('domcontentloaded');
     }
 
     async search(query: string) {
