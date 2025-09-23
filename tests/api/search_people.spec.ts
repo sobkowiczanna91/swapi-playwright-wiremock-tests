@@ -1,8 +1,8 @@
 import {expect, request, test} from '@playwright/test';
-import {PEOPLE_DATA} from "../data_people";
-import {BASE_URL, PEOPLE} from "./endpoints";
+import {PEOPLE_DATA} from "../../data/people";
+import {BASE_URL, PEOPLE} from "../../api/endpoints";
 
-test.describe('GET /people @api @smoke', () => {
+test.describe('@api GET @people @smoke', () => {
     test('@positive Luke Skywalker - 200', async () => {
         const apiRequestContext = await request.newContext();
         const LUKE = PEOPLE_DATA.luke;

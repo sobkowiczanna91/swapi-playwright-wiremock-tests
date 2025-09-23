@@ -1,5 +1,5 @@
 import {Page, Locator, expect} from '@playwright/test';
-import {getLabelLocator, getValueLocator} from "../tests/frontend/utils/locator_helper";
+import {getLabelLocator, getValueLocator} from "./utils/locator_helper";
 
 const GENDER = 'Gender';
 const BIRTH_YEAR = 'Birth year';

@@ -1,8 +1,8 @@
 import {test, expect} from '@playwright/test';
-import {SearchComponent} from "../../pages/search-component";
-import {NoResultsComponent} from "../../pages/no_results_component";
-import {CharacterCardComponent} from "../../pages/character_card_component";
-import {PEOPLE_DATA} from "../data_people";
+import {SearchComponent} from "../../ui/search-component";
+import {NoResultsComponent} from "../../ui/no_results_component";
+import {CharacterCardComponent} from "../../ui/character_card_component";
+import {PEOPLE_DATA} from "../../data/people";
 
 let searchPage: SearchComponent;
 
@@ -13,7 +13,7 @@ test.beforeEach(async ({page}) => {
     await searchPage.clickPeopleRadioButton();
 });
 
-test.describe('@regression search character by name', () => {
+test.describe('@regression search people by name', () => {
 
     for (const p of Object.values(PEOPLE_DATA)) {
         test(`@positive full name - ${p.name}`, async () => {

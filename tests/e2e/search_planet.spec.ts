@@ -1,9 +1,9 @@
-// TypeScript
 import {test, expect} from '@playwright/test';
-import {SearchComponent} from "../../pages/search-component";
-import {PlanetCardComponent} from "../../pages/planet_card_component";
-import {CharacterCardComponent} from "../../pages/character_card_component";
-import {NoResultsComponent} from "../../pages/no_results_component";
+import {SearchComponent} from "../../ui/search-component";
+import {PlanetCardComponent} from "../../ui/planet_card_component";
+import {CharacterCardComponent} from "../../ui/character_card_component";
+import {NoResultsComponent} from "../../ui/no_results_component";
+import {PLANETS_DATA} from "../../data/planets";
 
 let searchPage: SearchComponent;
 
@@ -16,22 +16,19 @@ test.beforeEach(async ({page}) => {
 
 test.describe('@regression search planet by name', () => {
     test('positive full name - Tatooine', async () => {
-        const TATOOINE = "Tatooine";
+        const TATOOINE = PLANETS_DATA.tatooine;
 
-        await searchPage.search(TATOOINE);
-
+        await searchPage.search(TATOOINE.name);
         const planetCard = new PlanetCardComponent(searchPage.page);
 
-        await expect(planetCard.name).toHaveText(TATOOINE);
+        await expect(planetCard.name).toHaveText(TATOOINE.name);
 
         await expect.soft(planetCard.populationLabel).toBeVisible();
-        await expect.soft(planetCard.populationValue).toContainText("200000");
-
+        await expect.soft(planetCard.populationValue).toContainText(TATOOINE.population);
         await expect.soft(planetCard.climateLabel).toBeVisible();
-        await expect.soft(planetCard.climateValue).toContainText("arid");
-
+        await expect.soft(planetCard.climateValue).toContainText(TATOOINE.climate, {ignoreCase: true});
         await expect.soft(planetCard.gravityLabel).toBeVisible();
-        await expect.soft(planetCard.gravityValue).toContainText("1 standard");
+        await expect.soft(planetCard.gravityValue).toContainText(TATOOINE.gravity, {ignoreCase: true});
 
         expect(test.info().errors).toHaveLength(0);
     });

@@ -1,5 +1,5 @@
 import {test, expect} from '@playwright/test';
-import {SearchComponent} from "../../pages/search-component";
+import {SearchComponent} from "../../ui/search-component";
 
 let searchPage: SearchComponent;
 

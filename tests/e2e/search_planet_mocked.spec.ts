@@ -1,5 +1,5 @@
 import {test, expect} from '@playwright/test';
-import {SearchComponent} from "../../pages/search-component";
+import {SearchComponent} from "../../ui/search-component";
 
 test.beforeEach(async ({ page }) => {
     const mockBase = process.env.MOCK_SWAPI_BASE!;

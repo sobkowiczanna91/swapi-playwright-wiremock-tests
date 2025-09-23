@@ -1,5 +1,5 @@
 import {Page, Locator} from '@playwright/test';
-import {getLabelLocator, getValueLocator} from "../tests/frontend/utils/locator_helper";
+import {getLabelLocator, getValueLocator} from "./utils/locator_helper";
 
 const POPULATION = 'Population';
 const CLIMATE = 'Climate';
