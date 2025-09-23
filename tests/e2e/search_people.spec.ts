@@ -16,7 +16,7 @@ test.beforeEach(async ({page}) => {
 test.describe('@regression search character by name', () => {
 
     for (const p of Object.values(PEOPLE_DATA)) {
-        test(`positive full name - ${p.name}`, async () => {
+        test(`@positive full name - ${p.name}`, async () => {
             await searchPage.search(p.name);
 
             const characterCardComponent = new CharacterCardComponent(searchPage.page);
@@ -38,7 +38,7 @@ test.describe('@regression search character by name', () => {
         });
     }
 
-    test('positive partial name', async () => {
+    test('@positive partial name', async () => {
         const LU = "Lu";
         await searchPage.search(LU);
 
@@ -57,7 +57,7 @@ test.describe('@regression search character by name', () => {
         });
     });
 
-    test('negative', async () => {
+    test('@negative', async () => {
         await searchPage.search("NonExistingCharacter");
 
         const noResultsComponent = new NoResultsComponent(searchPage.page);
