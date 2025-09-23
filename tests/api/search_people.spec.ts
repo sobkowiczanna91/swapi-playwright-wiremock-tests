@@ -1,13 +1,11 @@
-import {test, expect, request} from '@playwright/test';
+import {expect, request, test} from '@playwright/test';
 import {PEOPLE_DATA} from "../data_people";
-
-const BASE_URL = process.env.SWAPI_TECH_BASE ?? 'https://www.swapi.tech/api';
-const PEOPLE_ENDPOINT = '/people';
+import {BASE_URL, PEOPLE} from "./endpoints";
 
 test('@smoke GET people - Luke Skywalker fields match', async () => {
     const apiRequestContext = await request.newContext();
     const LUKE = PEOPLE_DATA.luke;
-    const apiResponse = await apiRequestContext.get(`${BASE_URL}${PEOPLE_ENDPOINT}`, {params: {name: LUKE.name}});
+    const apiResponse = await apiRequestContext.get(`${BASE_URL}${PEOPLE}`, {params: {name: LUKE.name}});
 
     expect(apiResponse.status()).toBe(200);
 
@@ -28,3 +26,4 @@ test('@smoke GET people - Luke Skywalker fields match', async () => {
 
     await apiResponse.dispose();
 });
+
