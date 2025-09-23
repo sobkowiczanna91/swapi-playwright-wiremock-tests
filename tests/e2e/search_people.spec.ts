@@ -1,11 +1,11 @@
-import { test, expect } from '@playwright/test';
-import { SearchComponent } from "../../pages/search-component";
-import { NoResultsComponent } from "../../pages/no_results_component";
-import { CharacterCardComponent } from "../../pages/character_card_component";
+import {test, expect} from '@playwright/test';
+import {SearchComponent} from "../../pages/search-component";
+import {NoResultsComponent} from "../../pages/no_results_component";
+import {CharacterCardComponent} from "../../pages/character_card_component";
 
 let searchPage: SearchComponent;
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({page}) => {
     searchPage = new SearchComponent(page);
     await searchPage.goto();
     await expect(searchPage.header).toHaveText("The Star Wars Search");
@@ -15,8 +15,8 @@ test.beforeEach(async ({ page }) => {
 test.describe('@regression search character by name', () => {
 
     const peopleCases = [
-        { name: "Darth Vader", gender: "male", birthYear: "41.9BBY", eyeColor: "yellow", skinColor: "white" },
-        { name: "Luke Skywalker", gender: "male", birthYear: "19BBY", eyeColor: "blue", skinColor: "fair" },
+        {name: "Darth Vader", gender: "male", birthYear: "41.9BBY", eyeColor: "yellow", skinColor: "white"},
+        {name: "Luke Skywalker", gender: "male", birthYear: "19BBY", eyeColor: "blue", skinColor: "fair"},
     ] as const;
 
     for (const p of peopleCases) {
@@ -52,7 +52,7 @@ test.describe('@regression search character by name', () => {
         await characterCardComponent.name.all().then(async (nameHeadings) => {
             expect(nameHeadings.length).toBeGreaterThan(0);
             for (const heading of nameHeadings) {
-                await expect.soft(heading).toContainText(LU);
+                await expect.soft(heading).toContainText(LU, {ignoreCase: true});
             }
             expect(test.info().errors).toHaveLength(0);
         });

@@ -18,8 +18,8 @@ export class PlanetCardComponent {
     constructor(page: Page) {
         this.page = page;
         this.name = page.locator('h6');
-        this.populationLabel = this.page.locator(getValueLocator(POPULATION));
-        this.populationValue = this.page.locator(getLabelLocator(POPULATION));
+        this.populationLabel = this.page.locator(getLabelLocator(POPULATION));
+        this.populationValue = this.page.locator(getValueLocator(POPULATION));
         this.climateLabel = this.page.locator(getLabelLocator(CLIMATE));
         this.climateValue = this.page.locator(getValueLocator(CLIMATE));
         this.gravityLabel = this.page.locator(getLabelLocator(GRAVITY));
