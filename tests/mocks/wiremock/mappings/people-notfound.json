@@ -1,0 +1,8 @@
+{
+  "request": { "method": "GET", "urlPath": "/api/people" },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "not-found.json"
+  }
+}

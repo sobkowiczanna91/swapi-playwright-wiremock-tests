@@ -1,0 +1,14 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPath": "/api/planets",
+    "queryParameters": {
+      "search": { "contains": "tatooine" }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "planets.search.tatooine.json"
+  }
+}

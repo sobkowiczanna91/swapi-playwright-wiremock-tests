@@ -1,0 +1,21 @@
+{
+  "name": "swapi-playwright-wiremock",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:smoke": "playwright test --grep '@smoke'",
+    "test:regression": "playwright test --grep '@regression'",
+    "test:ui": "playwright test --ui",
+    "pw:install": "playwright install --with-deps",
+    "playwright-report": "playwright show-report",
+    "allure:generate": "allure generate ./allure-results --clean",
+    "allure:open": "allure open ./allure-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "allure-playwright": "^3.4.1",
+    "testcontainers": "^10.10.2",
+    "typescript": "^5.5.4"
+  }
+}
