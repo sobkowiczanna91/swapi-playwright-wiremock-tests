@@ -33,6 +33,17 @@ test.describe('@regression search planet by name', () => {
         expect(test.info().errors).toHaveLength(0);
     });
 
+    test('@positive search by Enter key', async () => {
+        const TATOOINE = PLANETS_DATA.tatooine;
+        await searchPage.searchInput.fill(TATOOINE.name);
+        await searchPage.searchInput.press('Enter');
+
+        const planetCardComponent = new PlanetCardComponent(searchPage.page);
+        await expect(planetCardComponent.name).toHaveText(TATOOINE.name);
+
+        expect(test.info().errors).toHaveLength(0);
+    });
+
     test('positive partial name', async () => {
         const PARTIAL = "to";
         await searchPage.search(PARTIAL);

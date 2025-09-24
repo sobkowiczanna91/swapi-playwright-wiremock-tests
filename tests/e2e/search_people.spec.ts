@@ -38,6 +38,17 @@ test.describe('@regression search people by name', () => {
         });
     }
 
+    test('@positive search by Enter key', async () => {
+        const LUKE = PEOPLE_DATA.luke;
+        await searchPage.searchInput.fill(LUKE.name);
+        await searchPage.searchInput.press('Enter');
+
+        const characterCardComponent = new CharacterCardComponent(searchPage.page);
+        await expect(characterCardComponent.name).toHaveText(LUKE.name);
+
+        expect(test.info().errors).toHaveLength(0);
+    });
+
     test('@positive partial name', async () => {
         const LU = "Lu";
         await searchPage.search(LU);
