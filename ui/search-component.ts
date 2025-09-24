@@ -35,7 +35,7 @@ export class SearchComponent {
         await this.peopleRadioButton.click();
     }
 
-    async clickOnPlanetsRadioButton() {
+    async clickPlanetsRadioButton() {
         await this.planetsRadioButton.click();
     }
 }

@@ -11,7 +11,7 @@ test.beforeEach(async ({page}) => {
     searchPage = new SearchComponent(page);
     await searchPage.goto();
     await expect(searchPage.header).toHaveText("The Star Wars Search");
-    await searchPage.clickOnPlanetsRadioButton();
+    await searchPage.clickPlanetsRadioButton();
 });
 
 test.describe('@regression search planet by name', () => {

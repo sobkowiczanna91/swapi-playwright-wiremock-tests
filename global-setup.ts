@@ -57,6 +57,34 @@ async function globalSetup(config: FullConfig) {
         }
     });
 
+    await registerMapping(admin, {
+        priority: 1,
+        request: {
+            method: "GET",
+            urlPathPattern: "/api/planets/?",
+            queryParameters: {
+                name: {
+                    equalTo: "Tatooine"
+                }
+            }
+        },
+        response: {
+            status: 200,
+            jsonBody: {
+                result: [
+                    {
+                        properties: {
+                            name: "Tatooine",
+                            population: "200000",
+                            climate: "arid",
+                            gravity: "1 standard"
+                        }
+                    }
+                ]
+            }
+        }
+    });
+
     const check = await fetch(`${mockBase}/people?name=${encodeURIComponent('Luke Skywalker')}`);
     console.log('[wiremock] sample GET /people?name=Luke%20Skywalker ->', check.status);
     console.log('[wiremock] sample body:', (await check.text()).slice(0, 200));
