@@ -4,7 +4,7 @@ export default defineConfig({
     testDir: './tests',
     globalSetup: './global-setup.ts',
     globalTeardown: './global-teardown.ts',
-    // retries: 1,
+    retries: 1,
     reporter: [
         ['list'],
         ['allure-playwright'],
@@ -20,7 +20,7 @@ export default defineConfig({
     },
     projects: [
         { name: 'chromium', use: { ...devices['Desktop Chrome'], headless: false} },
-        // { name: 'firefox', use: { ...devices['Desktop Firefox'], headless: false} },
-        // { name: 'webkit', use: { ...devices['Desktop Safari'], headless: false } }
+        { name: 'firefox', use: { ...devices['Desktop Firefox'], headless: false} },
+        { name: 'webkit', use: { ...devices['Desktop Safari'], headless: false } }
     ]
 });
