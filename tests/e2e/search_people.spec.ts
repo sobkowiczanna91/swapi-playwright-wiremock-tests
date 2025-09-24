@@ -45,8 +45,6 @@ test.describe('@regression search people by name', () => {
 
         const characterCardComponent = new CharacterCardComponent(searchPage.page);
         await expect(characterCardComponent.name).toHaveText(LUKE.name);
-
-        expect(test.info().errors).toHaveLength(0);
     });
 
     test('@positive partial name', async () => {

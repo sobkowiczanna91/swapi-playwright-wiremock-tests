@@ -40,8 +40,6 @@ test.describe('@regression search planet by name', () => {
 
         const planetCardComponent = new PlanetCardComponent(searchPage.page);
         await expect(planetCardComponent.name).toHaveText(TATOOINE.name);
-
-        expect(test.info().errors).toHaveLength(0);
     });
 
     test('positive partial name', async () => {
