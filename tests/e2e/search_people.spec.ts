@@ -14,7 +14,15 @@ test.beforeEach(async ({page}) => {
 });
 
 test.describe('@regression search people by name', () => {
-
+    /**
+     * @allure.label owner Anna Sobkowicz
+     * @allure.label severity normal
+     * @allure.feature Search People
+     * @allure.tag Search, People
+     * @allure.issue SEARCH-001
+     * @allure.description Tests cover searching for people by full and partial names, including search initiation
+     * via the Enter key. They also handle scenarios where no results are found.
+     */
     for (const p of Object.values(PEOPLE_DATA)) {
         test(`@positive full name - ${p.name}`, async () => {
             await searchPage.search(p.name);
