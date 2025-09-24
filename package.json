@@ -14,8 +14,12 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.48.2",
+    "@types/node-fetch": "^2.6.13",
     "allure-playwright": "^3.4.1",
     "testcontainers": "^10.10.2",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
   }
 }
