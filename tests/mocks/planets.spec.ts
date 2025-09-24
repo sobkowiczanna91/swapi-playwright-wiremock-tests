@@ -1,27 +1,14 @@
-import { test, expect } from '@playwright/test';
-import { PLANETS_DATA } from '../../data/planets';
-import { PlanetCardComponent } from '../../ui/planet_card_component';
-import { SearchComponent } from '../../ui/search-component';
+import {test, expect} from '@playwright/test';
+import {PLANETS_DATA} from '../../data/planets';
+import {PlanetCardComponent} from '../../ui/planet_card_component';
+import {SearchComponent} from '../../ui/search-component';
+import {routeSwapiApiCalls} from "./utils";
 
 let searchPage: SearchComponent;
 let planetCard: PlanetCardComponent;
-const mockBase = process.env.MOCK_SWAPI_BASE;
 
-test.beforeEach(async ({ page }) => {
-    await page.route('https://swapi.tech/api/**', async (route, request) => {
-        const orig = new URL(request.url());
-        const rewritten = `${mockBase}${orig.pathname.replace(/^\/api/, '')}${orig.search}`;
-        const resp = await page.request.fetch(rewritten, {
-            method: request.method(),
-            headers: request.headers(),
-            data: request.postData(),
-        });
-        await route.fulfill({
-            status: resp.status(),
-            headers: resp.headers(),
-            body: await resp.body(),
-        });
-    });
+test.beforeEach(async ({page}) => {
+    await routeSwapiApiCalls(page);
 
     searchPage = new SearchComponent(page);
     planetCard = new PlanetCardComponent(page);
