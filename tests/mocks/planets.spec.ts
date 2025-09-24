@@ -36,7 +36,7 @@ test.describe('@mock search @planets @smoke', () => {
         try {
             result = JSON.parse(bodyText).result;
         } catch (e) {
-            throw new Error(`WireMock incorrect JSON ${bodyText}`);
+            throw new Error(`WireMock created incorrect JSON ${bodyText}`);
         }
 
         const properties = result[0].properties;
